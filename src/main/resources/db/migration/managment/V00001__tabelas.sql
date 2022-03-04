@@ -3,8 +3,7 @@ CREATE TABLE IF NOT EXISTS usuario(
     nome varchar(255) NOT NULL,
     email varchar(255) NOT NULL,
     data_cadastro date default current_date,
-    img_url varchar(512),
-    idioma varchar(5),
+    telefone varchar(255) NOT NULL,
     senha varchar(255) NOT NULL,
     schema varchar(50),
     CONSTRAINT usuario_pkey PRIMARY KEY (id)

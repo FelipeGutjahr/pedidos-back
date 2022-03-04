@@ -1,4 +1,4 @@
-package com.br.gutjahr.despesas.resourses;
+package com.br.gutjahr.despesas.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -6,7 +6,7 @@ import java.util.Map;
 import javax.validation.Valid;
 
 import com.br.gutjahr.despesas.model.CrudBaseModel;
-import com.br.gutjahr.despesas.services.CrudBaseService;
+import com.br.gutjahr.despesas.service.CrudBaseService;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -17,12 +17,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
-public abstract class CrudBaseResourse<M extends CrudBaseModel<Integer>,
+public abstract class CrudBaseController<M extends CrudBaseModel<Integer>,
         R extends JpaRepository<M, Integer>, S extends CrudBaseService<M, R>> {
     
     private S modelService;
 
-    protected CrudBaseResourse(S modelService) {
+    protected CrudBaseController(S modelService) {
         this.modelService = modelService;
     }
 

@@ -1,7 +1,8 @@
-package com.br.gutjahr.despesas.resourses;
+package com.br.gutjahr.despesas.controller;
 
 import com.br.gutjahr.despesas.model.Usuario;
-import com.br.gutjahr.despesas.services.UsuarioService;
+import com.br.gutjahr.despesas.service.UsuarioService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +16,7 @@ import java.net.URI;
 
 @RestController
 @RequestMapping(value = "/usuario")
-public class UsuarioResourse {
+public class UsuarioController {
 
     @Autowired
     private UsuarioService usuarioService;

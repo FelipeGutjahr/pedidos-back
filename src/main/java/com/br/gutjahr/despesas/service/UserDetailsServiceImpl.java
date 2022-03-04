@@ -1,7 +1,7 @@
-package com.br.gutjahr.despesas.services;
+package com.br.gutjahr.despesas.service;
 
 import com.br.gutjahr.despesas.model.Usuario;
-import com.br.gutjahr.despesas.repositories.UsuarioRepository;
+import com.br.gutjahr.despesas.repository.UsuarioRepository;
 import com.br.gutjahr.despesas.security.UserSS;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

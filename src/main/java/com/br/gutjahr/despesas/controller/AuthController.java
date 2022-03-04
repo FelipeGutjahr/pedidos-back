@@ -1,8 +1,9 @@
-package com.br.gutjahr.despesas.resourses;
+package com.br.gutjahr.despesas.controller;
 
 import com.br.gutjahr.despesas.model.Usuario;
 import com.br.gutjahr.despesas.security.JWTUtil;
-import com.br.gutjahr.despesas.services.UserService;
+import com.br.gutjahr.despesas.service.UserService;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,7 +15,7 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping(value = "/auth")
-public class AuthResourse {
+public class AuthController {
 
     private UserService userService;
 

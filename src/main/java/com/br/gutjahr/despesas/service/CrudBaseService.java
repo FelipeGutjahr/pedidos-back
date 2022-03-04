@@ -1,4 +1,4 @@
-package com.br.gutjahr.despesas.services;
+package com.br.gutjahr.despesas.service;
 
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;

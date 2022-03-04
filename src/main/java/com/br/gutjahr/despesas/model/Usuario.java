@@ -13,7 +13,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "usuario", schema = "public")
+@Table(name = "usuario", schema = "managment")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Usuario implements Serializable {
     private static final long serialVersionUID = 1L;
@@ -24,11 +24,10 @@ public class Usuario implements Serializable {
     private Integer id;
     private String nome;
     private String email;
+    private String telefone;
     @Temporal(TemporalType.DATE)
     @Column(name = "data_cadastro")
     private Date dataCadastro;
-    @Column(name = "img_url")
-    private String imgUrl;
     @Transient
     @JsonIgnore
     private Perfil perfil;
@@ -40,15 +39,5 @@ public class Usuario implements Serializable {
 
     public Usuario() {
         this.perfil = Perfil.USER_FREE;
-    }
-
-    public Usuario(Integer id, String nome, String email, Date dataCadastro, String imgUrl, String senha, String driverClassName, String url, String username, String password, Boolean initialize, String schema) {
-        this.id = id;
-        this.nome = nome;
-        this.email = email;
-        this.dataCadastro = dataCadastro;
-        this.imgUrl = imgUrl;
-        this.senha = senha;
-        this.schema = schema;
     }
 }

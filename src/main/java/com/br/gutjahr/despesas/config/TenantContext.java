@@ -8,18 +8,18 @@ import org.springframework.stereotype.Service;
 public class TenantContext {
 
     @Getter
-    private final String PADRAO = "padrao";
+    private final String MANAGMENT = "managment";
 
     @Getter
     @Setter
     private String schema;
 
     public void clean() {
-        schema = PADRAO;
+        schema = MANAGMENT;
     }
 
     public TenantContext() {
-        this.schema = PADRAO;
+        this.schema = MANAGMENT;
     }
 
 }

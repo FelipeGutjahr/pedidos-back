@@ -1,7 +1,7 @@
 package com.br.gutjahr.despesas.config;
 
 import com.br.gutjahr.despesas.model.Usuario;
-import com.br.gutjahr.despesas.repositories.UsuarioRepository;
+import com.br.gutjahr.despesas.repository.UsuarioRepository;
 import com.br.gutjahr.despesas.security.JWTUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -18,20 +18,20 @@ public class FLywayConfiguration implements FlywayMigrationStrategy {
         DataSource dataSource = flyway.getConfiguration().getDataSource();
 
         Flyway publico = Flyway.configure()
-                .schemas("public")
-                .locations("db/migration/public")
+                .schemas("managment")
+                .locations("db/migration/managment")
                 .table("flyway_history")
                 .baselineOnMigrate(true)
                 .dataSource(dataSource).load();
         publico.migrate();
 
-        Flyway padrao = Flyway.configure()
+        /*Flyway padrao = Flyway.configure()
                 .schemas("padrao")
                 .locations("db/migration/cliente")
                 .table("flyway_history")
                 .baselineOnMigrate(true)
                 .dataSource(dataSource).load();
-        padrao.migrate();
+        padrao.migrate();*/
 
         for (String schema : getSchemas(dataSource)) {
             Flyway cliente = Flyway.configure()
@@ -46,7 +46,7 @@ public class FLywayConfiguration implements FlywayMigrationStrategy {
 
     public List<String> getSchemas(DataSource dataSource) {
         try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement("select schema from public.usuario");
+            PreparedStatement statement = conn.prepareStatement("select schema from managment.usuario");
             ResultSet rs = statement.executeQuery();
             List<String> list = new ArrayList<>();
             while(rs.next()) {

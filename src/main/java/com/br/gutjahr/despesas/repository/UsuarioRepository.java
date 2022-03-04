@@ -1,4 +1,4 @@
-package com.br.gutjahr.despesas.repositories;
+package com.br.gutjahr.despesas.repository;
 
 import com.br.gutjahr.despesas.model.Usuario;
 import org.springframework.data.jpa.repository.JpaRepository;
