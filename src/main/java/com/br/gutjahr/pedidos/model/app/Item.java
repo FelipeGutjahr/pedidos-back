@@ -15,21 +15,18 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@Table(name = "endereco")
-public class Endereco implements Serializable {
+@Table(name = "item")
+public class Item implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    @NotNull(message = "Informe a rua")
-    private String rua;
-    @NotNull(message = "Informe o número")
-    private String numero;
-    @NotNull(message = "Informe o bairro")
-    private String bairro;
-    private String cep;
+    @NotNull(message = "Informe o nome")
+    private String nome;
+    @NotNull(message = "Informe o preço")
+    private Double preco;
 
-    public Endereco() {}
+    public Item() {}
 }

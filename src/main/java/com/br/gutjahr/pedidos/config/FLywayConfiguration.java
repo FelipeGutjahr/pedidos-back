@@ -36,7 +36,7 @@ public class FLywayConfiguration implements FlywayMigrationStrategy {
         for (String schema : getSchemas(dataSource)) {
             Flyway cliente = Flyway.configure()
                     .schemas(schema)
-                    .locations("db/migration/cliente")
+                    .locations("db/migration/usuario")
                     .table("flyway_history")
                     .baselineOnMigrate(true)
                     .dataSource(dataSource).load();

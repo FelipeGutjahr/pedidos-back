@@ -24,13 +24,13 @@ public class UsuarioController {
 
     @RequestMapping(method = RequestMethod.GET)
     public ResponseEntity<?> buscar(){
-        Usuario usuario = usuarioService.find();
+        Usuario usuario = usuarioService.buscar();
         return ResponseEntity.ok().body(usuario);
     }
 
     @RequestMapping(method = RequestMethod.POST)
     public ResponseEntity<Void> inserir(@Valid @RequestBody Usuario usuario){
-        usuario = usuarioService.insert(usuario);
+        usuario = usuarioService.inserir(usuario);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).build();

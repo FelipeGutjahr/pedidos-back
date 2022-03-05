@@ -26,19 +26,19 @@ public class UsuarioService {
     @Autowired
     private UsuarioRepository usuarioRepository;
 
-    public Usuario find(){
+    public Usuario buscar(){
         Optional<Usuario> usuario = Optional.ofNullable(userService.authencated().get());
         return usuario.get();
     }
 
-    public Usuario insert(Usuario usuario){
+    public Usuario inserir(Usuario usuario){
         if (usuarioRepository.findByEmail(usuario.getEmail()) != null) {
             throw new Advertencia("Email já cadastrado");
         }
         usuario.setId(null);
         usuario.setSenha(pe.encode(usuario.getSenha()));
         usuarioRepository.save(usuario);
-        usuario.setSchema("cliente_" + usuario.getId());
+        usuario.setSchema("usuario_" + usuario.getId());
         usuarioRepository.save(usuario);
         criarSchema(usuario.getSchema());
         return usuario;
@@ -48,7 +48,7 @@ public class UsuarioService {
         DataSource dataSource = flyway.getConfiguration().getDataSource();
         Flyway cliente = Flyway.configure()
                 .schemas(schema)
-                .locations("db/migration/cliente")
+                .locations("db/migration/usuario")
                 .table("flyway_history")
                 .baselineOnMigrate(true)
                 .dataSource(dataSource).load();

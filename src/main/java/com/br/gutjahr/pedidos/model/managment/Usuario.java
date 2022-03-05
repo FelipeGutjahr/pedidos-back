@@ -33,6 +33,9 @@ public class Usuario implements Serializable {
     @Temporal(TemporalType.DATE)
     @Column(name = "data_cadastro")
     private Date dataCadastro;
+    /*@NotNull(message = "Informe se é restaurante")
+    @Column(name = "is_restaurante")
+    private Boolean isRestaurante;*/
     @Transient
     @JsonIgnore
     private Perfil perfil;
