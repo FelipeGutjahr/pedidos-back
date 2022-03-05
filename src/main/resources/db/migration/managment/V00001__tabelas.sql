@@ -5,6 +5,8 @@ CREATE TABLE IF NOT EXISTS usuario(
     data_cadastro date default current_date,
     telefone varchar(255) NOT NULL,
     senha varchar(255) NOT NULL,
+    is_restaurante boolean default false,
+    avaliacao decimal default 0.0,
     schema varchar(50),
     CONSTRAINT usuario_pkey PRIMARY KEY (id)
 );

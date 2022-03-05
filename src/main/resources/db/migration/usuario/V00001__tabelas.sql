@@ -16,6 +16,6 @@ CREATE TABLE IF NOT EXISTS item(
 
 CREATE TABLE IF NOT EXISTS ajustes(
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
-    is_restaurante boolean default false,
+    is_restaurante boolean not null default false,
     CONSTRAINT ajustes_pkey PRIMARY KEY (id)
 );

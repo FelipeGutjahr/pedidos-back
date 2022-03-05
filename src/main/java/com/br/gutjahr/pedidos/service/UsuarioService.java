@@ -11,6 +11,7 @@ import com.br.gutjahr.pedidos.exception.Advertencia;
 import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.UsuarioRepository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -18,7 +19,6 @@ public class UsuarioService {
 
     @Autowired
     private UserService userService;
-
     @Autowired
     private BCryptPasswordEncoder pe;
     @Autowired
@@ -53,5 +53,9 @@ public class UsuarioService {
                 .baselineOnMigrate(true)
                 .dataSource(dataSource).load();
         cliente.migrate();
+    }
+
+    public List<Usuario> listarRestaurantes() {
+        return usuarioRepository.listarRestaurantes();
     }
 }
