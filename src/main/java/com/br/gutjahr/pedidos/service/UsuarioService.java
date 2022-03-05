@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 import javax.sql.DataSource;
 
 import com.br.gutjahr.pedidos.exception.Advertencia;
-import com.br.gutjahr.pedidos.model.Usuario;
+import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.UsuarioRepository;
 
 import java.util.Optional;

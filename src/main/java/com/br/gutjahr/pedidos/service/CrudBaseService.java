@@ -8,7 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import com.br.gutjahr.pedidos.model.CrudBaseModel;
+import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

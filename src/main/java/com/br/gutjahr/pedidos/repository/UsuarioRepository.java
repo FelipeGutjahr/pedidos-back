@@ -5,7 +5,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
-import com.br.gutjahr.pedidos.model.Usuario;
+import com.br.gutjahr.pedidos.model.managment.Usuario;
 
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 

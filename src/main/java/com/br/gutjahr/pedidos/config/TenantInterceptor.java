@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.br.gutjahr.pedidos.model.Usuario;
+import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.UsuarioRepository;
 import com.br.gutjahr.pedidos.security.JWTUtil;
 

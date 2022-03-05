@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 
-import com.br.gutjahr.pedidos.model.Usuario;
+import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.UsuarioRepository;
 import com.br.gutjahr.pedidos.security.UserSS;
 

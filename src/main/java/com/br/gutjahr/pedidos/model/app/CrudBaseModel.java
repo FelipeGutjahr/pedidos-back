@@ -1,4 +1,4 @@
-package com.br.gutjahr.pedidos.model;
+package com.br.gutjahr.pedidos.model.app;
 
 import java.io.Serializable;
 

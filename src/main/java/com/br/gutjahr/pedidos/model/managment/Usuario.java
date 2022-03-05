@@ -1,4 +1,4 @@
-package com.br.gutjahr.pedidos.model;
+package com.br.gutjahr.pedidos.model.managment;
 
 import com.br.gutjahr.pedidos.enums.Perfil;
 import com.fasterxml.jackson.annotation.JsonIgnore;

@@ -5,7 +5,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
-import com.br.gutjahr.pedidos.model.CrudBaseModel;
+import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
 import com.br.gutjahr.pedidos.service.CrudBaseService;
 
 import org.springframework.data.domain.Page;
