@@ -9,6 +9,7 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 @Component
+@SuppressWarnings("rawtypes")
 public class MultiTenantConnectionProviderImpl  implements MultiTenantConnectionProvider {
 
     private final DataSource dataSource;

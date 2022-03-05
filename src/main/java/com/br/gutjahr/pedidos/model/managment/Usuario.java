@@ -7,6 +7,8 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -22,8 +24,11 @@ public class Usuario implements Serializable {
     @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotNull(message = "Infome o nome")
     private String nome;
+    @NotNull(message = "Informe o e-mail")
     private String email;
+    @NotNull(message = "Informe o telefone")
     private String telefone;
     @Temporal(TemporalType.DATE)
     @Column(name = "data_cadastro")
@@ -31,7 +36,8 @@ public class Usuario implements Serializable {
     @Transient
     @JsonIgnore
     private Perfil perfil;
-    //@JsonIgnore
+    //@JsonIgnore()
+    @NotNull(message = "Informe a senha")
     private String senha;
 
     @JsonIgnore
