@@ -28,11 +28,22 @@ public class TenantInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handler) throws Exception {
         String token = request.getHeader("Authorization");
         if (token != null && !token.isEmpty()) {
-            String user = jwtUtil.getUsername(token.replace("Bearer ", ""));
-            Usuario usuario = repository.findByEmail(user);
-            tenantContext.setSchema(usuario.getSchema());
+            buscarSchemaPorEmail(token);
+        } else if(request.getParameter("restaurante_id") != null) {
+            buscarSchemaPorId(Integer.parseInt(request.getParameter("restaurante_id")));
         }
         return true;
+    }
+
+    private void buscarSchemaPorEmail(String token) {
+        String user = jwtUtil.getUsername(token.replace("Bearer ", ""));
+        Usuario usuario = repository.buscarPorEmail(user);
+        tenantContext.setSchema(usuario.getSchema());
+    }
+
+    private void buscarSchemaPorId(Integer restauranteId) {
+        Usuario usuario = repository.findById(restauranteId).get();
+        tenantContext.setSchema(usuario.getSchema());
     }
 
     @Override

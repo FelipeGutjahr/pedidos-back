@@ -8,8 +8,6 @@ import javax.validation.Valid;
 import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
 import com.br.gutjahr.pedidos.service.CrudBaseService;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,8 +25,8 @@ public abstract class CrudBaseController<M extends CrudBaseModel<Integer>,
     }
 
     @GetMapping(value = "/listar")
-	public Page<M> listar(Pageable pageable) throws Exception {
-        return modelService.findAll(pageable);
+	public List<M> listar() throws Exception {
+        return modelService.findAll();
 	}
 
     @GetMapping(value="/inserir")

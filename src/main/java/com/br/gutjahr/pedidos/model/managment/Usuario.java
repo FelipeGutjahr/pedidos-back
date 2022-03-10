@@ -55,12 +55,7 @@ public class Usuario implements Serializable {
     private String schema;
 
     public Usuario() {
-        this.perfil = Perfil.CLIENTE;
-    }
-
-    // USUARIO.FIND_BY_EMAIL
-    public Usuario(Integer id) {
-        this.id = id;
+        this.perfil = Perfil.USER_FREE;
     }
 
     // USUARIO.LISTAR_RESTAURANTES
@@ -68,5 +63,14 @@ public class Usuario implements Serializable {
         this.id = id;
         this.nome = nome;
         this.avaliacao = avaliacao;
+    }
+
+    // UTILIZADO NO PROCESSO DE LOGIN, NÃO ALTERAR
+    // USUARIO.FIND_BY_EMAIL
+    public Usuario(Integer id, String nome, String email, String senha) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
     }
 }

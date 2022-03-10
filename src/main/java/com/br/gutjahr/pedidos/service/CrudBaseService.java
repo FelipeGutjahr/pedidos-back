@@ -11,8 +11,6 @@ import java.util.Map;
 import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public abstract class CrudBaseService<M extends CrudBaseModel<Integer>, 
@@ -65,8 +63,8 @@ public abstract class CrudBaseService<M extends CrudBaseModel<Integer>,
 		modelRepository.deleteById(id);
 	}
 
-    public Page<M> findAll(Pageable pageable) {
-        return modelRepository.findAll(pageable);
+    public List<M> findAll() {
+        return modelRepository.findAll();
 	}
 
     protected R getModelRepository() {

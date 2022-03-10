@@ -32,7 +32,7 @@ public class UsuarioService {
     }
 
     public Usuario inserir(Usuario usuario){
-        if (usuarioRepository.findByEmail(usuario.getEmail()) != null) {
+        if (usuarioRepository.buscarPorEmail(usuario.getEmail()) != null) {
             throw new Advertencia("Email já cadastrado");
         }
         usuario.setId(null);

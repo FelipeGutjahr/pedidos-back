@@ -1,11 +1,6 @@
 package com.br.gutjahr.pedidos.model.app;
 
-import java.io.Serializable;
-
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -15,8 +10,9 @@ import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "item")
-public class Item implements Serializable {
+public class Item extends CrudBaseModel<Integer> {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -29,4 +25,10 @@ public class Item implements Serializable {
     private Double preco;
 
     public Item() {}
+
+    public Item(Integer id, String nome, Double preco) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+    }
 }

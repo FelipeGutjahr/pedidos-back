@@ -1,5 +1,6 @@
 package com.br.gutjahr.pedidos.security;
 
+import com.br.gutjahr.pedidos.enums.Perfil;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -7,8 +8,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-
-import com.br.gutjahr.pedidos.enums.Perfil;
 
 public class UserSS implements UserDetails {
     private static final long serialVersionUID = 1L;
@@ -21,10 +20,11 @@ public class UserSS implements UserDetails {
     public UserSS() {}
 
     public UserSS(Integer id, String email, String senha, Perfil perfil) {
+        System.out.println(senha);
         this.id = id;
         this.email = email;
         this.senha = senha;
-        this.authorities = setUserAuthorities(perfil);
+        this.authorities = setUserAuthorities(Perfil.USER_FREE);
     }
 
     // converte o perfil do usuário para uma lista de Collection<SimpleGrantedAuthority>
