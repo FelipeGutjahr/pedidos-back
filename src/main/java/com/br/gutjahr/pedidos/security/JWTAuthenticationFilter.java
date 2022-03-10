@@ -15,7 +15,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 
 public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
 
@@ -52,9 +51,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                                             Authentication auth) throws IOException, ServletException {
         String username = ((UserSS) auth.getPrincipal()).getUsername();
         String token = jwtUtil.generateToken(username);
-        res.getWriter().write("Bearer " + token);
-        res.getWriter().flush();
-        res.addHeader("Authorization", "Bearer " + token);
+        res.setContentType("application/json");
+        res.getWriter().append("{\"token\": \"" + "Bearer " + token + "\"}");
     }
 
     private class JWTAuthenticationFailureHandler implements AuthenticationFailureHandler {
@@ -66,13 +64,10 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             response.setContentType("application/json");
             response.getWriter().append(json());
         }
+        
         private String json() {
-            long date = new Date().getTime();
-            return "{\"timestamp\": " + date + ", "
-                    + "\"status\": 401, "
-                    + "\"error\": \"Não autorizado\", "
-                    + "\"message\": \"Email ou senha inválidos\", "
-                    + "\"path\": \"/login\"}";
+            return "{\"status\": 401, "
+                    + "\"mensagem\": \"Email ou senha inválidos\"}";
         }
     }
 }

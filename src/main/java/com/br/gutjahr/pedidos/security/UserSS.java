@@ -20,7 +20,6 @@ public class UserSS implements UserDetails {
     public UserSS() {}
 
     public UserSS(Integer id, String email, String senha, Perfil perfil) {
-        System.out.println(senha);
         this.id = id;
         this.email = email;
         this.senha = senha;
