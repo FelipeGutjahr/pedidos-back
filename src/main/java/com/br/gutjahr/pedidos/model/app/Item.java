@@ -23,6 +23,8 @@ public class Item extends CrudBaseModel<Integer> {
     private String nome;
     @NotNull(message = "Informe o preço")
     private Double preco;
+    @NotNull(message = "Informe a decrição")
+    private String descricao;
 
     public Item() {}
 
@@ -30,5 +32,13 @@ public class Item extends CrudBaseModel<Integer> {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
+    }
+
+    // ITEM.GET_ONE
+    public Item(Integer id, String nome, Double preco, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.descricao = descricao;
     }
 }

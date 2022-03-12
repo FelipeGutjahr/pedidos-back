@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.br.gutjahr.pedidos.exception.Advertencia;
 import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -62,6 +63,14 @@ public abstract class CrudBaseService<M extends CrudBaseModel<Integer>,
     public void excluir(Integer id) {
 		modelRepository.deleteById(id);
 	}
+
+    public M visualizar(Integer id) {
+        M instancia = modelRepository.getOne(id);
+        if(instancia == null) {
+            throw new Advertencia("Nenhum registro encontrado");
+        }
+        return instancia;
+    }
 
     public List<M> findAll() {
         return modelRepository.findAll();

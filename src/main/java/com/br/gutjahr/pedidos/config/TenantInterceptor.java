@@ -29,8 +29,8 @@ public class TenantInterceptor implements HandlerInterceptor {
         String token = request.getHeader("Authorization");
         if (token != null && !token.isEmpty()) {
             buscarSchemaPorEmail(token);
-        } else if(request.getParameter("restaurante_id") != null) {
-            buscarSchemaPorId(Integer.parseInt(request.getParameter("restaurante_id")));
+        } else if(request.getParameter("restauranteId") != null) {
+            buscarSchemaPorId(Integer.parseInt(request.getParameter("restauranteId")));
         }
         return true;
     }

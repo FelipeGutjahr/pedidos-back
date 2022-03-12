@@ -29,6 +29,11 @@ public abstract class CrudBaseController<M extends CrudBaseModel<Integer>,
         return modelService.findAll();
 	}
 
+    @GetMapping(value = "/visualizar")
+    public M visualizar(@RequestParam("id") Integer id) throws Exception {
+        return modelService.visualizar(id);
+    }
+
     @GetMapping(value="/inserir")
     public List<Map<String, Object>> inserir() throws Exception {
         return modelService.criarNovaInstancia();
