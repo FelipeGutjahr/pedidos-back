@@ -1,6 +1,8 @@
 package com.br.gutjahr.pedidos.model.managment;
 
 import com.br.gutjahr.pedidos.enums.Perfil;
+import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
+import com.br.gutjahr.pedidos.model.app.Item;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -12,19 +14,18 @@ import lombok.Setter;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "usuario", schema = "managment")
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Usuario implements Serializable {
+public class Usuario extends CrudBaseModel<Integer> {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @JsonInclude(Include.NON_NULL)
@@ -46,6 +47,9 @@ public class Usuario implements Serializable {
     @JsonInclude(Include.NON_NULL)
     private Double avaliacao;
     @Transient
+    @JsonInclude(Include.NON_NULL)
+    private List<Item> itens;
+    @Transient
     @JsonIgnore
     private Perfil perfil;
     @NotNull(message = "Informe a senha")
@@ -55,10 +59,10 @@ public class Usuario implements Serializable {
     private String schema;
 
     public Usuario() {
-        this.perfil = Perfil.USER_FREE;
+        this.perfil = Perfil.CLIENTE;
     }
 
-    // USUARIO.LISTAR_RESTAURANTES
+    // RESTAURANTE.FIND_ALL
     public Usuario(Integer id, String nome, Double avaliacao) {
         this.id = id;
         this.nome = nome;
@@ -66,11 +70,19 @@ public class Usuario implements Serializable {
     }
 
     // UTILIZADO NO PROCESSO DE LOGIN, NÃO ALTERAR
-    // USUARIO.FIND_BY_EMAIL
     public Usuario(Integer id, String nome, String email, String senha) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+    }
+
+    // RESTAURANTE.GET_ONE
+    public Usuario(Integer id, String nome, String email, String telefone, Date dataCadatro) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.telefone = telefone;
+        this.dataCadastro = dataCadatro;
     }
 }

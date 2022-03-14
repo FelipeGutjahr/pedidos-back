@@ -64,8 +64,12 @@ public abstract class CrudBaseService<M extends CrudBaseModel<Integer>,
 		modelRepository.deleteById(id);
 	}
 
+    public M getOne(Integer id) {
+        return modelRepository.getOne(id);
+    }
+
     public M visualizar(Integer id) {
-        M instancia = modelRepository.getOne(id);
+        M instancia = getOne(id);
         if(instancia == null) {
             throw new Advertencia("Nenhum registro encontrado");
         }

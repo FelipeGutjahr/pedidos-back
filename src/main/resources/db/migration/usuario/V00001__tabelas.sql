@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS item(
     nome varchar(255) NOT NULL,
     preco decimal NOT NULL,
     descricao varchar(512) NOT NULL,
+    img_url varchar(512),
     CONSTRAINT item_pkey PRIMARY KEY (id)
 );
 

@@ -37,7 +37,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private static final String[] PUBLIC_MATCHERS_GET = {
         "/usuario/listar_restaurantes",
         "/item/listar",
-        "/item/visualizar"
+        "/item/visualizar",
+        "/restaurante/**"
     };
 
     // exige autenticação para todos os endpoints que não estão em PUBLIC_MATCHERS

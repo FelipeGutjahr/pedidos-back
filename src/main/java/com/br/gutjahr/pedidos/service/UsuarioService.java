@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class UsuarioService {
+public class UsuarioService extends CrudBaseService<Usuario, UsuarioRepository> {
 
     @Autowired
     private UserService userService;

@@ -3,8 +3,6 @@ package com.br.gutjahr.pedidos.model.app;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,7 +14,6 @@ public class Item extends CrudBaseModel<Integer> {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @JsonIgnore
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     @NotNull(message = "Informe o nome")
@@ -25,6 +22,8 @@ public class Item extends CrudBaseModel<Integer> {
     private Double preco;
     @NotNull(message = "Informe a decrição")
     private String descricao;
+    @Column(name = "img_url")
+    private String imgUrl;
 
     public Item() {}
 

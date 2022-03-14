@@ -2,7 +2,7 @@ package com.br.gutjahr.pedidos.enums;
 
 public enum Perfil {
 
-    USER_FREE(1, "ROLE_FREE");
+    CLIENTE(1, "ROLE_CLIENTE");
 
     private int cod;
     private String descricao;

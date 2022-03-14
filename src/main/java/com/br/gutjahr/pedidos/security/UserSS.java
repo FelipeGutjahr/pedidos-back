@@ -23,7 +23,7 @@ public class UserSS implements UserDetails {
         this.id = id;
         this.email = email;
         this.senha = senha;
-        this.authorities = setUserAuthorities(Perfil.USER_FREE);
+        this.authorities = setUserAuthorities(Perfil.CLIENTE);
     }
 
     // converte o perfil do usuário para uma lista de Collection<SimpleGrantedAuthority>
