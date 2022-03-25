@@ -1,20 +1,24 @@
 package com.br.gutjahr.pedidos.model.app;
 
-import java.io.Serializable;
-
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
+@Entity
 @Table(name = "endereco")
-public class Endereco implements Serializable {
+@JsonInclude(Include.NON_NULL)
+public class Endereco extends CrudBaseModel<Integer> {
     private static final long serialVersionUID = 1L;
 
     @Id
