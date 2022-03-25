@@ -17,10 +17,8 @@ public class TenantInterceptor implements HandlerInterceptor {
 
     @Autowired
     TenantContext tenantContext;
-
     @Autowired
     JWTUtil jwtUtil;
-
     @Autowired
     UsuarioRepository repository;
 

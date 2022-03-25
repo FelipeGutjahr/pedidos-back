@@ -1,5 +1,9 @@
 package com.br.gutjahr.pedidos.service;
 
+import java.util.List;
+
+import com.br.gutjahr.pedidos.config.TenantContext;
+import com.br.gutjahr.pedidos.model.app.Item;
 import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.RestauranteRepository;
 
@@ -10,14 +14,27 @@ import org.springframework.stereotype.Service;
 public class RestauranteService extends CrudBaseService<Usuario, RestauranteRepository> {
 
     @Autowired
-    RestauranteRepository restauranteRepository;
+    private ItemService itemService;
+    @Autowired
+    private RestauranteRepository restauranteRepository;
+    @Autowired
+    private DatabaseSessionManager databaseSessionManager;
+    @Autowired
+    private TenantContext tenantContext;
 
     @Override
     public Usuario getOne(Integer id) {
         Usuario usuario = restauranteRepository.getOne(id);
         if(usuario != null) {
-            // TODO: Settar a lista de itens no usuário
+            usuario.setItens(carregarItens(usuario.getSchema()));
         }
         return usuario;
+    }
+
+    private List<Item> carregarItens(String schema) {
+        databaseSessionManager.unbindSession();
+        tenantContext.setSchema(schema);
+        databaseSessionManager.bindSession();
+        return itemService.findAll();
     }
 }

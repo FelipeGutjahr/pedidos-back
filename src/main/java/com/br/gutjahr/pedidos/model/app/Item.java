@@ -3,6 +3,9 @@ package com.br.gutjahr.pedidos.model.app;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonInclude.Include;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -10,6 +13,7 @@ import lombok.Setter;
 @Setter
 @Entity
 @Table(name = "item")
+@JsonInclude(Include.NON_NULL)
 public class Item extends CrudBaseModel<Integer> {
     private static final long serialVersionUID = 1L;
 
@@ -26,12 +30,6 @@ public class Item extends CrudBaseModel<Integer> {
     private String imgUrl;
 
     public Item() {}
-
-    public Item(Integer id, String nome, Double preco) {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco;
-    }
 
     // ITEM.GET_ONE
     public Item(Integer id, String nome, Double preco, String descricao) {
