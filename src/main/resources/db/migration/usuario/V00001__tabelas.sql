@@ -16,6 +16,15 @@ CREATE TABLE IF NOT EXISTS item(
     CONSTRAINT item_pkey PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS cartao(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
+    nome_no_cartao varchar(255) NOT NULL,
+    numero varchar(16) NOT NULL,
+    data_vencimento date,
+    cvc varchar(3),
+    CONSTRAINT cartao_pkey PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS ajustes(
     id bigint NOT NULL GENERATED ALWAYS AS IDENTITY ( INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9223372036854775807 CACHE 1 ),
     is_restaurante boolean not null default false,

@@ -1,13 +1,13 @@
 package com.br.gutjahr.pedidos.enums;
 
-public enum Perfil {
+public enum FormaPag {
 
-    CLIENTE(1, "ROLE_CLIENTE"),RESTAURANTE(2, "ROLE_RESTAURANTE");
+    DINHEIRO(1, "Dinheiro"),CARTAO(2, "Cartão");
 
     private int cod;
     private String descricao;
 
-    Perfil(int cod, String descricao) {
+    FormaPag(int cod, String descricao) {
         this.cod = cod;
         this.descricao = descricao;
     }
