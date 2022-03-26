@@ -44,18 +44,17 @@ public class UsuarioService extends CrudBaseService<Usuario, UsuarioRepository> 
     }
 
     public void criarSchema(Usuario usuario) {
-        String migrationName = usuario.getIsRestaurante() ? "restaurante" : "cliente";
         DataSource dataSource = flyway.getConfiguration().getDataSource();
         Flyway cliente = Flyway.configure()
                 .schemas(usuario.getSchema())
-                .locations("db/migration/" + migrationName)
+                .locations("db/migration/" + getMigrationName(usuario))
                 .table("flyway_history")
                 .baselineOnMigrate(true)
                 .dataSource(dataSource).load();
         cliente.migrate();
     }
 
-    /*public List<Usuario> listarRestaurantes() {
-        return usuarioRepository.listarRestaurantes();
-    }*/
+    private String getMigrationName(Usuario usuario) {
+        return usuario.getIsRestaurante() ? "restaurante" : "cliente";
+    }
 }

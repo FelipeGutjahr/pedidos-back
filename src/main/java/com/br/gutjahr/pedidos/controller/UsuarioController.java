@@ -23,10 +23,9 @@ public class UsuarioController {
     @Autowired
     private UsuarioService usuarioService;
 
-    @GetMapping()
-    public ResponseEntity<?> buscar(){
-        Usuario usuario = usuarioService.buscar();
-        return ResponseEntity.ok().body(usuario);
+    @GetMapping("/visualizar")
+    public Usuario buscar(){
+        return usuarioService.buscar();
     }
 
     @PostMapping()
@@ -36,10 +35,4 @@ public class UsuarioController {
                 .path("/{id}").buildAndExpand(usuario.getId()).toUri();
         return ResponseEntity.created(uri).build();
     }
-
-    /*@GetMapping(value = "/listar_restaurantes")
-    public ResponseEntity<?> listarRestaurantes() {
-        List<Usuario> restaurantes = usuarioService.listarRestaurantes();
-        return ResponseEntity.ok().body(restaurantes);
-    }*/
 }

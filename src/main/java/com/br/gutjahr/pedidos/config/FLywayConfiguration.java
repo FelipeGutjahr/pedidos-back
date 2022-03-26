@@ -26,15 +26,18 @@ public class FLywayConfiguration implements FlywayMigrationStrategy {
         publico.migrate();
 
         for (Map<String, Object> schema : getSchemas(dataSource)) {
-            String migrationName = schema.get("is_restaurante") == "true" ? "restaurante" : "cliente";
             Flyway cliente = Flyway.configure()
                     .schemas(schema.get("schema").toString())
-                    .locations("db/migration/" + migrationName)
+                    .locations("db/migration/" + getMigrationName(schema))
                     .table("flyway_history")
                     .baselineOnMigrate(true)
                     .dataSource(dataSource).load();
             cliente.migrate();
         }
+    }
+
+    private String getMigrationName(Map<String, Object> schema) {
+        return schema.get("is_restaurante") == "true" ? "restaurante" : "cliente";
     }
 
     public List<Map<String, Object>> getSchemas(DataSource dataSource) {
