@@ -11,7 +11,6 @@ import com.br.gutjahr.pedidos.exception.Advertencia;
 import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.UsuarioRepository;
 
-import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -40,22 +39,23 @@ public class UsuarioService extends CrudBaseService<Usuario, UsuarioRepository> 
         usuarioRepository.save(usuario);
         usuario.setSchema("usuario_" + usuario.getId());
         usuarioRepository.save(usuario);
-        criarSchema(usuario.getSchema());
+        criarSchema(usuario);
         return usuario;
     }
 
-    public void criarSchema(String schema) {
+    public void criarSchema(Usuario usuario) {
+        String migrationName = usuario.getIsRestaurante() ? "restaurante" : "cliente";
         DataSource dataSource = flyway.getConfiguration().getDataSource();
         Flyway cliente = Flyway.configure()
-                .schemas(schema)
-                .locations("db/migration/usuario")
+                .schemas(usuario.getSchema())
+                .locations("db/migration/" + migrationName)
                 .table("flyway_history")
                 .baselineOnMigrate(true)
                 .dataSource(dataSource).load();
         cliente.migrate();
     }
 
-    public List<Usuario> listarRestaurantes() {
+    /*public List<Usuario> listarRestaurantes() {
         return usuarioRepository.listarRestaurantes();
-    }
+    }*/
 }

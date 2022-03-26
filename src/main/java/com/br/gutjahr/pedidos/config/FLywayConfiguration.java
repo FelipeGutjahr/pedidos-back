@@ -25,18 +25,11 @@ public class FLywayConfiguration implements FlywayMigrationStrategy {
                 .dataSource(dataSource).load();
         publico.migrate();
 
-        /*Flyway padrao = Flyway.configure()
-                .schemas("padrao")
-                .locations("db/migration/cliente")
-                .table("flyway_history")
-                .baselineOnMigrate(true)
-                .dataSource(dataSource).load();
-        padrao.migrate();*/
-
-        for (String schema : getSchemas(dataSource)) {
+        for (Map<String, Object> schema : getSchemas(dataSource)) {
+            String migrationName = schema.get("is_restaurante") == "true" ? "restaurante" : "cliente";
             Flyway cliente = Flyway.configure()
-                    .schemas(schema)
-                    .locations("db/migration/usuario")
+                    .schemas(schema.get("schema").toString())
+                    .locations("db/migration/" + migrationName)
                     .table("flyway_history")
                     .baselineOnMigrate(true)
                     .dataSource(dataSource).load();
@@ -44,13 +37,15 @@ public class FLywayConfiguration implements FlywayMigrationStrategy {
         }
     }
 
-    public List<String> getSchemas(DataSource dataSource) {
+    public List<Map<String, Object>> getSchemas(DataSource dataSource) {
         try (Connection conn = dataSource.getConnection()) {
-            PreparedStatement statement = conn.prepareStatement("select schema from managment.usuario");
+            PreparedStatement statement = conn.prepareStatement("select schema, is_restaurante from managment.usuario");
             ResultSet rs = statement.executeQuery();
-            List<String> list = new ArrayList<>();
+            List<Map<String, Object>> list = new ArrayList<>();
             while(rs.next()) {
-                list.add(rs.getString(1));
+                Map<String, Object> schema = new HashMap<>();
+                schema.put("schema", rs.getString(1));
+                schema.put("is_restaurante", rs.getBoolean(2));
             }
             return list;
         } catch (SQLException e) {

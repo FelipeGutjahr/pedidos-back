@@ -15,7 +15,6 @@ import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.service.UsuarioService;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/usuario")
@@ -38,9 +37,9 @@ public class UsuarioController {
         return ResponseEntity.created(uri).build();
     }
 
-    @GetMapping(value = "/listar_restaurantes")
+    /*@GetMapping(value = "/listar_restaurantes")
     public ResponseEntity<?> listarRestaurantes() {
         List<Usuario> restaurantes = usuarioService.listarRestaurantes();
         return ResponseEntity.ok().body(restaurantes);
-    }
+    }*/
 }

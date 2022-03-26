@@ -45,4 +45,6 @@ public class Cartao extends CrudBaseModel<Integer> {
     @Size(max=3,min=3,message="CVC precisa ter 3 caracteres")
     @NotNull(message="Informe o CVC")
     private String cvc;
+
+    public Cartao() {}
 }

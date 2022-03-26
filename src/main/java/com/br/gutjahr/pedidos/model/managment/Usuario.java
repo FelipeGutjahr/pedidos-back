@@ -12,8 +12,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 import java.util.Date;
@@ -42,9 +40,6 @@ public class Usuario extends CrudBaseModel<Integer> {
     private Date dataCadastro;
     @Column(name = "is_restaurante")
     private Boolean isRestaurante;
-    @Max(5)
-    @Min(1)
-    private Double avaliacao;
     @Transient
     private List<Item> itens;
     @Transient
@@ -60,10 +55,9 @@ public class Usuario extends CrudBaseModel<Integer> {
     }
 
     // RESTAURANTE.FIND_ALL
-    public Usuario(Integer id, String nome, Double avaliacao) {
+    public Usuario(Integer id, String nome) {
         this.id = id;
         this.nome = nome;
-        this.avaliacao = avaliacao;
     }
 
     // UTILIZADO NO PROCESSO DE LOGIN/DEFINIR SCHEMA DAS REQUSIÇÕES, NÃO ALTERAR

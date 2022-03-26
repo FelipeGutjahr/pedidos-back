@@ -9,7 +9,7 @@ import org.springframework.data.repository.query.Param;
 
 public interface RestauranteRepository extends JpaRepository<Usuario, Integer> {
     
-    String FIND_ALL = "SELECT new Usuario(u.id, u.nome, u.avaliacao) FROM Usuario u";
+    String FIND_ALL = "SELECT new Usuario(u.id, u.nome) FROM Usuario u WHERE u.isRestaurante = true";
     String GET_ONE = "SELECT new Usuario(u.id, u.nome, u.email, u.telefone, u.dataCadastro, u.schema) FROM Usuario u WHERE u.id = :id";
 
     @Query(FIND_ALL)

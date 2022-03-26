@@ -1,5 +1,7 @@
 package com.br.gutjahr.pedidos.model.app;
 
+import java.math.BigDecimal;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
@@ -22,7 +24,8 @@ public class Item extends CrudBaseModel<Integer> {
     @NotNull(message = "Informe o nome")
     private String nome;
     @NotNull(message = "Informe o preço")
-    private Double preco;
+    @Column(precision = 10, scale = 2)
+    private BigDecimal preco;
     @NotNull(message = "Informe a decrição")
     private String descricao;
     @Column(name = "img_url")
@@ -31,7 +34,7 @@ public class Item extends CrudBaseModel<Integer> {
     public Item() {}
 
     // ITEM.GET_ONE
-    public Item(Integer id, String nome, Double preco, String descricao) {
+    public Item(Integer id, String nome, BigDecimal preco, String descricao) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
