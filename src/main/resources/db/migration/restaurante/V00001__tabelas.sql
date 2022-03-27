@@ -23,3 +23,15 @@ CREATE TABLE IF NOT EXISTS pedido(
     CONSTRAINT fk_pedido_cliente FOREIGN KEY (cliente_id) REFERENCES managment.usuario (id),
     CONSTRAINT pedido_pkey PRIMARY KEY (id)
 );
+
+CREATE TABLE IF NOT EXISTS pedido_item(
+    id bigint NOT NULL GENERATED ALWAYS AS IDENTITY,
+    quantidade decimal NOT NULL,
+    total decimal NOT NULL,
+    preco_unitario decimal NOT NULL,
+    item_id BIGINT NOT NULL,
+    pedido_id BIGINT NOT NULL,
+    CONSTRAINT fk_pedido_item_item FOREIGN KEY (item_id) REFERENCES item (id),
+    CONSTRAINT fk_pedido_item_pedido FOREIGN KEY (pedido_id) REFERENCES pedido (id),
+    CONSTRAINT pedido_item_pkey PRIMARY KEY (id)
+);

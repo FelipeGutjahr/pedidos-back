@@ -7,6 +7,7 @@ import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -22,6 +23,7 @@ import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
+import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
@@ -30,6 +32,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
+@DynamicUpdate
 @Table(name = "pedido")
 @JsonInclude(Include.NON_NULL)
 public class Pedido extends CrudBaseModel<Integer> {
@@ -42,12 +45,21 @@ public class Pedido extends CrudBaseModel<Integer> {
     @Temporal(TemporalType.DATE)
     @Column(name="data")
     private Calendar data;
-    @NotNull(message = "Informe o cliente")
     @ManyToOne()
     @JoinColumn(name = "cliente_id")
     private Usuario cliente;
-    @OneToMany(mappedBy="pedido",cascade=CascadeType.ALL)
+    @OneToMany(mappedBy="pedido",cascade=CascadeType.ALL,orphanRemoval=true,fetch=FetchType.LAZY)
 	private List<PedidoItem> itens = new ArrayList<>();
+    //@Transient
+    //private Usuario restaurante;
 
     public Pedido() {}
+
+    public void beforeSave() {
+        if(!itens.isEmpty()) {
+            for(PedidoItem pedidoItem : itens) {
+                pedidoItem.setPedido(this);
+            }
+        }
+    }
 }
