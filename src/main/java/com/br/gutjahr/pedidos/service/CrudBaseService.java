@@ -8,8 +8,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.br.gutjahr.pedidos.config.TenantContext;
 import com.br.gutjahr.pedidos.exception.Advertencia;
 import com.br.gutjahr.pedidos.model.app.CrudBaseModel;
+import com.br.gutjahr.pedidos.model.managment.Usuario;
+import com.br.gutjahr.pedidos.repository.UsuarioRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -20,6 +23,12 @@ public abstract class CrudBaseService<M extends CrudBaseModel<Integer>,
     private Class<M> modelClass;
     @Autowired
     private R modelRepository;
+    @Autowired
+    private DatabaseSessionManager databaseSessionManager;
+    @Autowired
+    private TenantContext tenantContext;
+    @Autowired
+    private UsuarioRepository usuarioRepository;
 
     protected CrudBaseService() {
         this.modelClass = getModelClass();
@@ -96,5 +105,15 @@ public abstract class CrudBaseService<M extends CrudBaseModel<Integer>,
     public void salvar(M instancia) {
         beforeSave(instancia);
         modelRepository.save(instancia);
+    }
+
+    public void alterarSchemaPorUsuarioId(Integer usuarioId) {
+        Usuario usuario = usuarioRepository.getOne(usuarioId);
+        if (usuario == null) {
+            throw new Advertencia("Não foi possível encontrar um usuário com id: " + usuarioId);
+        }
+        databaseSessionManager.unbindSession();
+        tenantContext.setSchema(usuario.getSchema());
+        databaseSessionManager.bindSession();
     }
 }

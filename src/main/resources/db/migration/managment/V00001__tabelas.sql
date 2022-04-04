@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS usuario(
     telefone varchar(255) NOT NULL,
     senha varchar(255) NOT NULL,
     is_restaurante boolean default false,
+    img_url varchar(255),
     schema varchar(50),
     CONSTRAINT usuario_pkey PRIMARY KEY (id)
 );

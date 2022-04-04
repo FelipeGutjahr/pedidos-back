@@ -40,6 +40,8 @@ public class Usuario extends CrudBaseModel<Integer> {
     private Date dataCadastro;
     @Column(name = "is_restaurante")
     private Boolean isRestaurante;
+    @Column(name = "img_url")
+    private String imgUrl;
     @Transient
     private List<Item> itens;
     @Transient
@@ -55,9 +57,10 @@ public class Usuario extends CrudBaseModel<Integer> {
     }
 
     // RESTAURANTE.FIND_ALL
-    public Usuario(Integer id, String nome) {
+    public Usuario(Integer id, String nome, String imgUrl) {
         this.id = id;
         this.nome = nome;
+        this.imgUrl = imgUrl;
     }
 
     // UTILIZADO NO PROCESSO DE LOGIN/DEFINIR SCHEMA DAS REQUSIÇÕES, NÃO ALTERAR
@@ -71,12 +74,14 @@ public class Usuario extends CrudBaseModel<Integer> {
     }
 
     // RESTAURANTE.GET_ONE
-    public Usuario(Integer id, String nome, String email, String telefone, Date dataCadatro, String schema) {
+    // USUARIO.GET_ONE
+    public Usuario(Integer id, String nome, String email, String telefone, Date dataCadatro, String imgUrl, String schema) {
         this.id = id;
         this.nome = nome;
         this.email = email;
         this.telefone = telefone;
         this.dataCadastro = dataCadatro;
+        this.imgUrl = imgUrl;
         this.schema = schema;
     }
 }

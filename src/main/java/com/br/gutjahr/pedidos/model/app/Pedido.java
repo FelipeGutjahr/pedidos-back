@@ -17,13 +17,13 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.constraints.NotNull;
 
 import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
-import org.hibernate.annotations.DynamicUpdate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import lombok.Getter;
@@ -32,7 +32,6 @@ import lombok.Setter;
 @Getter
 @Setter
 @Entity
-@DynamicUpdate
 @Table(name = "pedido")
 @JsonInclude(Include.NON_NULL)
 public class Pedido extends CrudBaseModel<Integer> {
@@ -50,8 +49,8 @@ public class Pedido extends CrudBaseModel<Integer> {
     private Usuario cliente;
     @OneToMany(mappedBy="pedido",cascade=CascadeType.ALL,orphanRemoval=true,fetch=FetchType.LAZY)
 	private List<PedidoItem> itens = new ArrayList<>();
-    //@Transient
-    //private Usuario restaurante;
+    @Transient
+    private Usuario restaurante;
 
     public Pedido() {}
 

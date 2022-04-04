@@ -21,8 +21,8 @@ public class PedidoService extends CrudBaseService<Pedido, PedidoRepository> {
     @Autowired
     private UsuarioService usuarioService;
 
-    private void alterarSchemaParaRestaurante() {
-        Usuario restaurante = restauranteService.getOne(13);
+    private void alterarSchemaParaRestaurante(Usuario restaurante) {
+        restaurante = restauranteService.getOne(restaurante.getId());
         databaseSessionManager.unbindSession();
         tenantContext.setSchema(restaurante.getSchema());
         databaseSessionManager.bindSession();
@@ -33,7 +33,7 @@ public class PedidoService extends CrudBaseService<Pedido, PedidoRepository> {
         if(pedido.getItens().isEmpty()) {
             throw new Advertencia("Informe os itens");
         }
-        alterarSchemaParaRestaurante();
+        alterarSchemaParaRestaurante(pedido.getRestaurante());
         pedido.setCliente(usuarioService.buscar());
         if(pedido.getCliente().isEmpty()) {
             throw new Advertencia("Não foi possível obter o usuário atual");

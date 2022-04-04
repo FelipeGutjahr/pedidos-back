@@ -33,11 +33,20 @@ public class Item extends CrudBaseModel<Integer> {
 
     public Item() {}
 
+    // ITEM.FIND_ALL
+    public Item(Integer id, String nome, BigDecimal preco, String imgUrl) {
+        this.id = id;
+        this.nome = nome;
+        this.preco = preco;
+        this.imgUrl = imgUrl;
+    }
+
     // ITEM.GET_ONE
-    public Item(Integer id, String nome, BigDecimal preco, String descricao) {
+    public Item(Integer id, String nome, BigDecimal preco, String descricao, String imgUrl) {
         this.id = id;
         this.nome = nome;
         this.preco = preco;
         this.descricao = descricao;
+        this.imgUrl = imgUrl;
     }
 }

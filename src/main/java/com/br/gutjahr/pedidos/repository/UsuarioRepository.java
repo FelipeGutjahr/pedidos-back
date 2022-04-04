@@ -12,9 +12,12 @@ import com.br.gutjahr.pedidos.model.managment.Usuario;
 public interface UsuarioRepository extends JpaRepository<Usuario, Integer> {
 
     String FIND_BY_EMAIL = "SELECT new Usuario(u.id, u.nome, u.email, u.senha, u.schema) FROM Usuario u WHERE u.email = :email";
+    String GET_ONE = "SELECT new Usuario(u.id, u.nome, u.email, u.telefone, u.dataCadastro, u.imgUrl, u.schema) FROM Usuario u WHERE u.id = :id";
 
     @Query(FIND_BY_EMAIL)
     Usuario buscarPorEmail(@Param("email") String email);
     @Transactional(readOnly = true)
     Optional<Usuario> findById(Integer id);
+    @Query(GET_ONE)
+    Usuario getOne(@Param("id") Integer id);
 }

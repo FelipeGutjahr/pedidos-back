@@ -48,4 +48,8 @@ public abstract class CrudBaseController<M extends CrudBaseModel<Integer>,
     public void excluir(@RequestParam("id") Integer id) {
         modelService.excluir(id);
     }
+
+    public S getModelService() {
+        return modelService;
+    }
 }

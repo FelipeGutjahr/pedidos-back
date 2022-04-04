@@ -1,9 +1,5 @@
 package com.br.gutjahr.pedidos.service;
 
-import java.util.List;
-
-import com.br.gutjahr.pedidos.config.TenantContext;
-import com.br.gutjahr.pedidos.model.app.Item;
 import com.br.gutjahr.pedidos.model.managment.Usuario;
 import com.br.gutjahr.pedidos.repository.RestauranteRepository;
 
@@ -17,24 +13,14 @@ public class RestauranteService extends CrudBaseService<Usuario, RestauranteRepo
     private ItemService itemService;
     @Autowired
     private RestauranteRepository restauranteRepository;
-    @Autowired
-    private DatabaseSessionManager databaseSessionManager;
-    @Autowired
-    private TenantContext tenantContext;
 
     @Override
     public Usuario getOne(Integer id) {
         Usuario usuario = restauranteRepository.getOne(id);
+        alterarSchemaPorUsuarioId(id);
         if(usuario != null) {
-            usuario.setItens(carregarItens(usuario.getSchema()));
+            usuario.setItens(itemService.findAll());
         }
         return usuario;
-    }
-
-    private List<Item> carregarItens(String schema) {
-        databaseSessionManager.unbindSession();
-        tenantContext.setSchema(schema);
-        databaseSessionManager.bindSession();
-        return itemService.findAll();
     }
 }
