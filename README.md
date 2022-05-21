@@ -1,2 +1,2 @@
 # pedidos-back
-Back-end para aplicativo/página web para pedidos de delivery
+Back-end para aplicativo/página web de pedidos via delivery
